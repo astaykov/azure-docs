@@ -20,7 +20,32 @@ ms.author: tomfitz
 # Understand the structure and syntax of Azure Resource Manager Templates
 This article describes the structure of an Azure Resource Manager template. It presents the different sections of a template and the properties that are available in those sections. The template consists of JSON and expressions that you can use to construct values for your deployment. For a step-by-step tutorial on creating a template, see [Create your first Azure Resource Manager template](resource-manager-create-first-template.md).
 
+## Quickstarts and tutorials
+
+Use the following quickstarts and tutorials to learn how to develop resource manager templates:
+
+- Quickstarts
+
+    |Title|Description|
+    |------|-----|
+    |[Use the Azure portal](./resource-manager-quickstart-create-templates-use-the-portal.md)|Generate a template using the portal, and the process of editing and deploying the template.|
+    |[Use Visual Studio Code](./resource-manager-quickstart-create-templates-use-visual-studio-code.md)|Use Visual Studio Code to create and edit templates, and how to use the Azure Cloud shell to deploy templates.|
+    |[Use Visual Studio](./vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)|Use Visual Studio to create, edit, and deploy templates.|
+
+- Tutorials
+
+    |Title|Description|
+    |------|-----|
+    |[Utilize template reference](./resource-manager-tutorial-create-encrypted-storage-accounts.md)|Utilize the template reference documentation to develop templates. In the tutorial, you find the storage account schema, and use the information to create an encrypted storage account.|
+    |[Create multiple instances](./resource-manager-tutorial-create-multiple-instances.md)|Create multiple instances of Azure resources. In the tutorial, you create multiple instances of storage account.|
+    |[Set resource deployment order](./resource-manager-tutorial-create-templates-with-dependent-resources.md)|Define resource dependencies. In the tutorial, you create a virtual network, a virtual machine, and the dependent Azure resources. You learn how the dependencies are defined.|
+    |[Use conditions](./resource-manager-tutorial-use-conditions.md)|Deploy resources based on some parameter values. In the tutorial, you define a template to create a new storage account or use an existing storage account based on the value of a parameter.|
+    |[Integrate key vault](./resource-manager-tutorial-use-key-vault.md)|Retrieve secrets/passwords from Azure Key Vault. In the tutorial, you create a virtual machine.  The virtual machine administrator password is retrieved from a Key Vault.|
+    |[Create linked templates](./resource-manager-tutorial-create-linked-templates.md)|Modularize templates, and call other templates from a template. In the tutorial, you create a virtual network, a virtual machine, and the dependent resources.  The dependent storage account is defined in a linked template. |
+    |[Use safe deployment practices](./deployment-manager-tutorial.md)|Use Azure Deployment manager. |
+
 ## Template format
+
 In its simplest structure, a template has the following elements:
 
 ```json
@@ -29,7 +54,7 @@ In its simplest structure, a template has the following elements:
     "contentVersion": "",
     "parameters": {  },
     "variables": {  },
-    "functions": {  },
+    "functions": [  ],
     "resources": [  ],
     "outputs": {  }
 }
@@ -210,6 +235,8 @@ Within your template, you can create your own functions. These functions are ava
 When defining a user function, there are some restrictions:
 
 * The function can't access variables.
+* The function can't access template parameters. That is, the [parameters function](resource-group-template-functions-deployment.md#parameters) is restricted to function parameters.
+* The function can't call other user-defined functions.
 * The function can't use the [reference function](resource-group-template-functions-resource.md#reference).
 * Parameters for the function can't have default values.
 
@@ -307,4 +334,4 @@ You can exceed some template limits by using a nested template. For more informa
 * To view complete templates for many different types of solutions, see the [Azure Quickstart Templates](https://azure.microsoft.com/documentation/templates/).
 * For details about the functions you can use from within a template, see [Azure Resource Manager Template Functions](resource-group-template-functions.md).
 * To combine multiple templates during deployment, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md).
-* You may need to use resources that exist within a different resource group. This scenario is common when working with storage accounts or virtual networks that are shared across multiple resource groups. For more information, see the [resourceId function](resource-group-template-functions-resource.md#resourceid).
+* For recommendations on creating Resource Manager templates that you can use across global Azure, Azure sovereign clouds, and Azure Stack, see [Develop Azure Resource Manager templates for cloud consistency](templates-cloud-consistency.md).

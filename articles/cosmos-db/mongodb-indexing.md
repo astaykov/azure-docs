@@ -7,6 +7,7 @@ manager: kfile
 editor: ''
 
 ms.service: cosmos-db
+ms.component: cosmosdb-mongo
 ms.devlang: nodejs
 ms.topic: conceptual
 ms.date: 03/01/2018
@@ -38,7 +39,7 @@ Compound indexes hold references to multiple fields of a document. Logically, th
 >[!important] 
 > Currently, unique indexes can be created only when the collection is empty (contains no documents). 
 
-The following command creates a unique index on the field “student_id”:
+The following command creates a unique index on the field "student_id":
 
 ```JavaScript
 globaldb:PRIMARY> db.coll.createIndex( { "student_id" : 1 }, {unique:true} ) 

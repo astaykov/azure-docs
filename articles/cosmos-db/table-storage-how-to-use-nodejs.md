@@ -6,6 +6,7 @@ author: SnehaGunda
 manager: kfile
 
 ms.service: cosmos-db
+ms.component: cosmosdb-table
 ms.devlang: nodejs
 ms.topic: sample
 ms.date: 04/05/2018
@@ -64,7 +65,7 @@ The Azure module reads the environment variables AZURE_STORAGE_ACCOUNT and AZURE
 var tableSvc = azure.createTableService('myaccount', 'myaccesskey');
 ```
 
-## Add an Azure Comsos DB connection
+## Add an Azure Cosmos DB connection
 To add an Azure Cosmos DB connection, create a **TableService** object and specify your account name, primary key, and endpoint. You can copy these values from **Settings** > **Connection String** in the Azure portal for your Cosmos DB account. For example:
 
 ```nodejs
